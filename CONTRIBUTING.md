@@ -85,3 +85,11 @@ The JupyterLite page uses [`jupyterlite-pyodide-kernel`](https://github.com/jupy
 ```
 
 Note that [only packages with pure-Python wheels](https://pyodide.org/en/stable/usage/loading-packages.html#installing-packages) are supported.
+
+## Testing all notebooks
+
+All notebooks can be run through the terminal with [`nbmake`](https://github.com/treebeardtech/nbmake) with
+
+```shell
+poe nb
+```
