@@ -1,0 +1,40 @@
+{
+  "allowCompoundWords": false,
+  "dictionaries": ["latex", "physics", "python", "this-project"],
+  "dictionaryDefinitions": [
+    {
+      "addWords": true,
+      "name": "notebooks",
+      "path": "./.cspell/notebooks.txt"
+    },
+    {
+      "addWords": true,
+      "name": "physics",
+      "path": "./.cspell/physics.txt"
+    },
+    {
+      "addWords": true,
+      "name": "this-project",
+      "path": "./.cspell/this-project.txt"
+    }
+  ],
+  "ignorePaths": [
+    ".cspell.json",
+    ".cspell/",
+    ".editorconfig",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".prettierignore",
+    ".vscode/",
+    "pyproject.toml"
+  ],
+  "language": "en-US",
+  "overrides": [
+    {
+      "dictionaries": ["latex", "notebooks", "physics", "python"],
+      "filename": "**/*.ipynb"
+    }
+  ],
+  "useGitignore": true,
+  "version": "0.2"
+}

@@ -1,0 +1,2 @@
+jupyterlite
+pyodide

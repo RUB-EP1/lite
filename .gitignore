@@ -1,0 +1,10 @@
+__pycache__/
+.ipynb_checkpoints/
+.jupyterlite.doit.db
+.venv
+.virtual_documents/
+*.egg-info
+*.py[oc]
+build/
+dist/
+wheels/

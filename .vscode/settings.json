@@ -1,0 +1,18 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "cSpell.enabled": true,
+  "editor.formatOnSave": true,
+  "livePreview.defaultPreviewPath": "dist",
+  "python.defaultInterpreterPath": ".venv/bin/python"
+}

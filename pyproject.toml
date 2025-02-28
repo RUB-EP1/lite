@@ -1,0 +1,30 @@
+[project]
+dependencies = [
+    # Core modules
+    "jupyterlab",
+    "jupyterlite-core",
+    "notebook",
+    # Kernels
+    "jupyterlite-pyodide-kernel",
+    # Packages
+    "ipympl",
+    "ipywidgets",
+]
+name = "rub1-ep1-lite"
+requires-python = ">=3.9"
+version = "0.1.0"
+
+[dependency-groups]
+dev = [
+    "jupyterlab",
+    "jupyterlab-code-formatter",
+    "jupyterlab-git",
+    "jupyterlab-lsp",
+    "python-lsp-ruff",
+    "python-lsp-server",
+    "ruff",
+]
+
+[tool.ruff]
+preview = true
+show-fixes = true

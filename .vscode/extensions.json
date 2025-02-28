@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "charliermarsh.ruff",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
+    "github.vscode-pull-request-github",
+    "mhutchie.git-graph",
+    "ms-toolsai.jupyter",
+    "ms-vscode.live-server",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker",
+    "tamasfe.even-better-toml",
+    "yzhang.markdown-all-in-one"
+  ]
+}
