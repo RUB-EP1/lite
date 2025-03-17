@@ -9,6 +9,8 @@ dependencies = [
     # Packages
     "ipympl",
     "ipywidgets",
+    "scipy>=1.13.1",
+    "stats>=0.1.2a0",
 ]
 name = "rub1-ep1-lite"
 requires-python = ">=3.9"
