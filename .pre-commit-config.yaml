@@ -11,7 +11,7 @@ repos:
       - id: check-useless-excludes
 
   - repo: https://github.com/ComPWA/policy
-    rev: 0.7.0
+    rev: 0.7.1
     hooks:
       - id: fix-nbformat-version
       - id: remove-empty-tags
@@ -46,7 +46,7 @@ repos:
             metadata.vscode
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.8
+    rev: v0.13.3
     hooks:
       - id: ruff
         args: [--fix]
@@ -83,13 +83,13 @@ repos:
       - id: taplo-format
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 3.2.1
+    rev: 3.4.0
     hooks:
       - id: editorconfig-checker
         name: editorconfig
         alias: ec
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.8
+    rev: 0.8.23
     hooks:
       - id: uv-lock
