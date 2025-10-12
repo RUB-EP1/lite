@@ -23,16 +23,34 @@ source .venv/bin/activate
 
 Note that you don't _have_ to activate virtual environment. You can also run the commands directly by prepending `uv run` before them.
 
-An additional tool to install is [`pre-commit`](https://pre-commit.com/), for automating formatting and style checks when you commit files. Install `pre-commit` globally once:
+Formatting and linting checks are automatically performed when committing changes. This is done with [pre-commit](https://pre-commit.com). To install the hooks in your local repository, run install `pre-commit` with `uv`:
 
 ```shell
-uv tool install --with pre-commit-uv pre-commit
+uv tool install pre-commit --with pre-commit-uv --force-reinstall
 ```
 
-and install the hooks in this repository once to let them one automatically run before each commit:
+and [`pre-commit install`](https://pre-commit.com/#3-install-the-git-hook-scripts) **once**:
 
 ```shell
 pre-commit install --install-hooks
+```
+
+[Poe the Poet](https://poethepoet.natn.io) is used as a task runner. It can also be installed with `uv`:
+
+```shell
+uv tool install poethepoet
+```
+
+You can see which local CI checks it defines by running
+
+```shell
+poe
+```
+
+For instance, all style checks can be run with
+
+```shell
+poe style
 ```
 
 ## Editing notebooks
@@ -40,13 +58,13 @@ pre-commit install --install-hooks
 Notebooks that are served on [rub-ep1.github.io/lite](https://rub-ep1.github.io/lite) are located under the [`content/`](./content/) directory. Add and modify them as you like with Jupyter Lab:
 
 ```shell
-jupyter lab content/
+poe lab
 ```
 
 To test what the web-based JupyterLite server will look like, run:
 
 ```shell
-jupyter lite serve --contents content --output-dir dist
+poe doclive
 ```
 
 > [!TIP]

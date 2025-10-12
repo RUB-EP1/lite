@@ -28,3 +28,44 @@ dev = [
 [tool.ruff]
 preview = true
 show-fixes = true
+
+[tool.poe]
+executor.type = "uv"
+
+[tool.poe.tasks.all]
+help = "Run all continuous integration (CI) tasks locally"
+ignore_fail = "return_non_zero"
+sequence = [
+    "style",
+    "doc",
+]
+
+[tool.poe.tasks.doc]
+cmd = """
+uv run \
+    --isolated \
+    --no-dev \
+    jupyter lite build \
+        --contents content \
+        --output-dir dist
+"""
+help = "Build Jupyter Lite website"
+
+[tool.poe.tasks.doclive]
+cmd = """
+uv run \
+    --isolated \
+    --no-dev \
+    jupyter lite serve \
+        --contents content \
+        --output-dir dist
+"""
+help = "Build and serve Jupyter Lite website"
+
+[tool.poe.tasks.lab]
+cmd = "jupyter lab content/"
+help = "Run Jupyter Lab"
+
+[tool.poe.tasks.style]
+cmd = "uv run --group style --isolated --no-dev pre-commit run --all-files"
+help = "Perform all linting, formatting, and spelling checks"
