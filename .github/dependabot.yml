@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    assignees:
+      - redeboer
+    commit-message:
+      prefix: MAINT
+    groups:
+      actions:
+        patterns:
+          - "*"
+    labels:
+      - ⬆️ Lock
+    schedule:
+      interval: semiannually
