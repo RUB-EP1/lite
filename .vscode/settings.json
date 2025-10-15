@@ -14,5 +14,6 @@
   "cSpell.enabled": true,
   "editor.formatOnSave": true,
   "livePreview.defaultPreviewPath": "dist",
-  "python.defaultInterpreterPath": ".venv/bin/python"
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.terminal.activateEnvironment": false
 }

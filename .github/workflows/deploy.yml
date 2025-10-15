@@ -27,8 +27,8 @@ jobs:
       - name: Build the JupyterLite site
         run: >-
           uv run \
-            --no-dev \
-            jupyter lite build --contents content --output-dir dist
+            --no-dev --with poethepoet \
+            poe doc
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
