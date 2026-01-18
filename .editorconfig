@@ -12,3 +12,6 @@ indent_size = 4
 
 [*.{ipynb,md}]
 indent_size = unset
+
+[uv.lock]
+indent_size = 4

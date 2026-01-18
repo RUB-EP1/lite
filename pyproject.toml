@@ -16,21 +16,22 @@ version = "0.1.0"
 
 [dependency-groups]
 dev = [
+    "ruff",
+    {include-group = "jupyter"},
+]
+jupyter = [
+    "jupyter-ruff",
     "jupyterlab",
-    "jupyterlab-code-formatter",
     "jupyterlab-git",
     "jupyterlab-lsp",
-    "python-lsp-ruff",
+    "jupyterlab-quickopen",
     "python-lsp-server",
-    "ruff",
 ]
 
-[tool.ruff]
-preview = true
-show-fixes = true
-
-[tool.poe]
-executor.type = "uv"
+[tool.poe.executor]
+isolated = true
+no-group = "dev"
+type = "uv"
 
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
@@ -42,30 +43,113 @@ sequence = [
 
 [tool.poe.tasks.doc]
 cmd = """
-uv run \
-    --isolated \
-    --no-dev \
-    jupyter lite build \
-        --contents content \
-        --output-dir dist
+jupyter lite build \
+    --contents content \
+    --output-dir dist
 """
 help = "Build Jupyter Lite website"
 
 [tool.poe.tasks.doclive]
 cmd = """
-uv run \
-    --isolated \
-    --no-dev \
-    jupyter lite serve \
-        --contents content \
-        --output-dir dist
+jupyter lite serve \
+    --contents content \
+    --output-dir dist
 """
-help = "Build and serve Jupyter Lite website"
+help = "Set up a server to directly preview changes to the HTML pages"
 
 [tool.poe.tasks.lab]
-cmd = "jupyter lab content/"
-help = "Run Jupyter Lab"
+args = [{name = "paths", default = "", positional = true}]
+cmd = "jupyter lab ${paths}"
+executor = {group = "jupyter"}
+help = "Launch Jupyter Lab"
+
+[tool.poe.tasks.nb]
+args = [{name = "paths", default = "docs", multiple = true, positional = true}]
+cmd = "pytest --nbmake --nbmake-timeout=0 ${paths}"
+executor = {with = "nbmake"}
+help = "Run all notebooks"
 
 [tool.poe.tasks.style]
-cmd = "uv run --group style --isolated --no-dev pre-commit run --all-files"
+cmd = "pre-commit run --all-files"
 help = "Perform all linting, formatting, and spelling checks"
+
+[tool.ruff]
+extend-include = ["*.ipynb"]
+preview = true
+show-fixes = true
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+
+[tool.ruff.lint]
+ignore = [
+    "ANN401",
+    "COM812",
+    "CPY001",
+    "D101",
+    "D102",
+    "D103",
+    "D105",
+    "D107",
+    "D203",
+    "D213",
+    "D407",
+    "D416",
+    "DOC",
+    "E501",
+    "FURB101",
+    "FURB103",
+    "FURB140",
+    "G004",
+    "ISC001",
+    "PLW1514",
+    "PT001",
+    "PTH",
+    "RUF067",
+    "SIM108",
+]
+select = ["ALL"]
+task-tags = ["cspell"]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["display"]
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = [
+    "ANN",
+    "B018",
+    "C90",
+    "D",
+    "E303",
+    "E703",
+    "N803",
+    "N806",
+    "N816",
+    "PLC2401",
+    "PLR09",
+    "PLR2004",
+    "PLW0602",
+    "PLW0603",
+    "RUF001",
+    "S101",
+    "T20",
+    "TC00",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.tomlsort]
+all = false
+ignore_case = true
+in_place = true
+sort_first = ["project"]
+spaces_indent_inline_array = 4
+trailing_comma_inline_array = true
