@@ -1,6 +1,11 @@
 {
+  "[git-commit]": {
+    "editor.rulers": [72],
+    "rewrap.wrappingColumn": 72
+  },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -9,11 +14,30 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "cSpell.enabled": true,
+  "diffEditor.experimental.showMoves": true,
   "editor.formatOnSave": true,
+  "gitlens.telemetry.enabled": false,
   "livePreview.defaultPreviewPath": "dist",
+  "multiDiffEditor.experimental.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.organizeImports": "explicit"
+  },
+  "notebook.formatOnSave.enabled": true,
   "python.defaultInterpreterPath": ".venv/bin/python",
-  "python.terminal.activateEnvironment": false
+  "python.terminal.activateEnvironment": false,
+  "redhat.telemetry.enabled": false,
+  "rewrap.wrappingColumn": 88,
+  "ruff.enable": true,
+  "ruff.importStrategy": "fromEnvironment",
+  "ruff.organizeImports": true,
+  "search.exclude": {
+    "**/uv.lock": true
+  },
+  "telemetry.telemetryLevel": "off"
 }
