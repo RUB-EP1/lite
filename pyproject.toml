@@ -5,7 +5,7 @@ dependencies = [
     "jupyterlite-core",
     "notebook",
     # Kernels
-    "jupyterlite-pyodide-kernel",
+    "jupyterlite-pyodide-kernel~=0.6.1",
     # Packages
     "ipympl",
     "ipywidgets",
