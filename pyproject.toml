@@ -33,6 +33,39 @@ isolated = true
 no-group = "dev"
 type = "uv"
 
+[tool.poe.groups.doc]
+
+[tool.poe.groups.doc.tasks.doc]
+cmd = """
+jupyter lite build \
+    --contents content \
+    --output-dir dist
+"""
+help = "Build Jupyter Lite website"
+
+[tool.poe.groups.doc.tasks.doclive]
+cmd = """
+jupyter lite serve \
+    --contents content \
+    --output-dir dist
+"""
+help = "Set up a server to directly preview changes to the HTML pages"
+
+[tool.poe.groups.notebook]
+heading = "Notebooks"
+
+[tool.poe.groups.notebook.tasks.lab]
+args = [{name = "paths", default = "", positional = true}]
+cmd = "jupyter lab ${paths}"
+executor = {group = "jupyter"}
+help = "Launch Jupyter Lab"
+
+[tool.poe.groups.notebook.tasks.nb]
+args = [{name = "paths", default = "content", multiple = true, positional = true}]
+cmd = "pytest --nbmake --nbmake-timeout=0 ${paths}"
+executor = {with = "nbmake"}
+help = "Run all notebooks"
+
 [tool.poe.tasks.all]
 help = "Run all continuous integration (CI) tasks locally"
 ignore_fail = "return_non_zero"
@@ -41,37 +74,17 @@ sequence = [
     "doc",
 ]
 
-[tool.poe.tasks.doc]
-cmd = """
-jupyter lite build \
-    --contents content \
-    --output-dir dist
-"""
-help = "Build Jupyter Lite website"
-
-[tool.poe.tasks.doclive]
-cmd = """
-jupyter lite serve \
-    --contents content \
-    --output-dir dist
-"""
-help = "Set up a server to directly preview changes to the HTML pages"
-
-[tool.poe.tasks.lab]
-args = [{name = "paths", default = "", positional = true}]
-cmd = "jupyter lab ${paths}"
-executor = {group = "jupyter"}
-help = "Launch Jupyter Lab"
-
-[tool.poe.tasks.nb]
-args = [{name = "paths", default = "content", multiple = true, positional = true}]
-cmd = "pytest --nbmake --nbmake-timeout=0 ${paths}"
-executor = {with = "nbmake"}
-help = "Run all notebooks"
-
 [tool.poe.tasks.style]
 cmd = "pre-commit run --all-files"
 help = "Perform all linting, formatting, and spelling checks"
+
+[tool.poe.tasks.upgrade]
+executor = {type = "simple"}
+help = "Upgrade lock files"
+parallel = [
+    {cmd = "pre-commit autoupdate -j8"},
+    {cmd = "uv lock --upgrade"},
+]
 
 [tool.ruff]
 extend-include = ["*.ipynb"]
