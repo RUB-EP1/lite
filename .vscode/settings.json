@@ -19,6 +19,9 @@
     },
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
+  "[toml]": {
+    "editor.defaultFormatter": "tombi-toml.tombi"
+  },
   "cSpell.enabled": true,
   "diffEditor.experimental.showMoves": true,
   "editor.formatOnSave": true,

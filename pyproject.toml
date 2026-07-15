@@ -1,23 +1,20 @@
 [project]
+name = "rub1-ep1-lite"
+version = "0.1.0"
+requires-python = ">=3.9"
 dependencies = [
-    # Core modules
-    "jupyterlab",
-    "jupyterlite-core",
-    "notebook",
-    # Kernels
-    "jupyterlite-pyodide-kernel~=0.6.1",
-    # Packages
     "ipympl",
     "ipywidgets",
+    "jupyterlab",
+    "jupyterlite-core",
+    "jupyterlite-pyodide-kernel~=0.6.1",
+    "notebook",
 ]
-name = "rub1-ep1-lite"
-requires-python = ">=3.9"
-version = "0.1.0"
 
 [dependency-groups]
 dev = [
     "ruff",
-    {include-group = "jupyter"},
+    { include-group = "jupyter" },
 ]
 jupyter = [
     "jupyter-ruff",
@@ -28,13 +25,28 @@ jupyter = [
     "python-lsp-server",
 ]
 
+[tool.compwa.policy]
+dev-python-version = "3.11"
+
+[tool.compwa.policy.setup]
+keep-contributing-md = true
+
+[tool.compwa.policy.nb]
+no-binder = true
+
+[tool.compwa.policy.github]
+no-cd = true
+no-github-actions = true
+
+[tool.compwa.policy.format]
+no-cspell-update = true
+
 [tool.poe.executor]
 isolated = true
 no-group = "dev"
 type = "uv"
 
 [tool.poe.groups.doc]
-
 [tool.poe.groups.doc.tasks.doc]
 cmd = """
 jupyter lite build \
@@ -55,15 +67,15 @@ help = "Set up a server to directly preview changes to the HTML pages"
 heading = "Notebooks"
 
 [tool.poe.groups.notebook.tasks.lab]
-args = [{name = "paths", default = "", positional = true}]
+args = [{ name = "paths", default = "", positional = true }]
 cmd = "jupyter lab ${paths}"
-executor = {group = "jupyter"}
+executor = { group = "jupyter" }
 help = "Launch Jupyter Lab"
 
 [tool.poe.groups.notebook.tasks.nb]
-args = [{name = "paths", default = "content", multiple = true, positional = true}]
+args = [{ name = "paths", default = "content", multiple = true, positional = true }]
 cmd = "pytest --nbmake --nbmake-timeout=0 ${paths}"
-executor = {with = "nbmake"}
+executor = { with = "nbmake" }
 help = "Run all notebooks"
 
 [tool.poe.tasks.all]
@@ -79,12 +91,17 @@ cmd = "pre-commit run --all-files"
 help = "Perform all linting, formatting, and spelling checks"
 
 [tool.poe.tasks.upgrade]
-executor = {type = "simple"}
+executor = { type = "simple" }
 help = "Upgrade lock files"
-parallel = [
-    {cmd = "pre-commit autoupdate -j8"},
-    {cmd = "uv lock --upgrade"},
-]
+parallel = ["_upgrade-precommit", "_upgrade-uv"]
+
+[tool.poe.tasks._upgrade-precommit]
+cmd = "pre-commit autoupdate -j8"
+executor = { type = "simple" }
+
+[tool.poe.tasks._upgrade-uv]
+cmd = "uv lock --upgrade"
+executor = { type = "simple" }
 
 [tool.ruff]
 extend-include = ["*.ipynb"]
@@ -126,7 +143,7 @@ select = ["ALL"]
 task-tags = ["cspell"]
 
 [tool.ruff.lint.flake8-builtins]
-builtins-ignorelist = ["display"]
+ignorelist = ["display"]
 
 [tool.ruff.lint.flake8-comprehensions]
 allow-dict-calls-with-keyword-arguments = true
@@ -159,10 +176,17 @@ split-on-trailing-comma = false
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.tomlsort]
-all = false
-ignore_case = true
-in_place = true
-sort_first = ["project"]
-spaces_indent_inline_array = 4
-trailing_comma_inline_array = true
+[tool.tombi.files]
+exclude = ["**/uv.lock"]
+
+[tool.tombi.format.rules]
+indent-width = 4
+line-width = 88
+
+[tool.tombi.lint.rules]
+key-empty = "off"
+
+[[tool.tombi.schemas]]
+root = "tool.compwa.policy"
+path = "https://raw.githubusercontent.com/ComPWA/policy/50ead6c4ae5131431a0bca8273f128c9e4e9cf72/compwa-policy.schema.json"
+include = ["pyproject.toml"]
