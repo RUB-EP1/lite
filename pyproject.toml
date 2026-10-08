@@ -93,10 +93,13 @@ help = "Perform all linting, formatting, and spelling checks"
 [tool.poe.tasks.upgrade]
 executor = { type = "simple" }
 help = "Upgrade lock files"
-parallel = ["_upgrade-precommit", "_upgrade-uv"]
+parallel = [
+    "_upgrade-precommit",
+    "_upgrade-uv",
+]
 
 [tool.poe.tasks._upgrade-precommit]
-cmd = "pre-commit autoupdate -j8"
+cmd = "prek autoupdate"
 executor = { type = "simple" }
 
 [tool.poe.tasks._upgrade-uv]
@@ -138,6 +141,28 @@ ignore = [
     "PTH",
     "RUF067",
     "SIM108",
+    "any-type",
+    "if-else-block-instead-of-if-exp",
+    "incorrect-blank-line-before-class",
+    "line-too-long",
+    "logging-f-string",
+    "missing-copyright-notice",
+    "missing-dashed-underline-after-section",
+    "missing-section-name-colon",
+    "missing-trailing-comma",
+    "multi-line-summary-second-line",
+    "non-empty-init-module",
+    "pytest-fixture-incorrect-parentheses-style",
+    "read-whole-file",
+    "reimplemented-starmap",
+    "single-line-implicit-string-concatenation",
+    "undocumented-magic-method",
+    "undocumented-public-class",
+    "undocumented-public-function",
+    "undocumented-public-init",
+    "undocumented-public-method",
+    "unspecified-encoding",
+    "write-whole-file",
 ]
 select = ["ALL"]
 task-tags = ["cspell"]
@@ -171,6 +196,15 @@ split-on-trailing-comma = false
     "S101",
     "T20",
     "TC00",
+    "assert",
+    "global-statement",
+    "global-variable-not-assigned",
+    "magic-value-comparison",
+    "mixed-case-variable-in-global-scope",
+    "non-lowercase-variable-in-function",
+    "too-many-blank-lines",
+    "useless-expression",
+    "useless-semicolon",
 ]
 
 [tool.ruff.lint.pydocstyle]
@@ -188,5 +222,5 @@ key-empty = "off"
 
 [[tool.tombi.schemas]]
 root = "tool.compwa.policy"
-path = "https://raw.githubusercontent.com/ComPWA/policy/0.9.0/compwa-policy.schema.json"
+path = "https://raw.githubusercontent.com/ComPWA/policy/0.9.8/compwa-policy.schema.json"
 include = ["pyproject.toml"]
