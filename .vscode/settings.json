@@ -27,7 +27,6 @@
   "editor.formatOnSave": true,
   "gitlens.telemetry.enabled": false,
   "livePreview.defaultPreviewPath": "dist",
-  "multiDiffEditor.experimental.enabled": true,
   "notebook.codeActionsOnSave": {
     "notebook.source.organizeImports": "explicit"
   },
