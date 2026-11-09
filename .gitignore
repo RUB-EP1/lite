@@ -1,6 +1,7 @@
 __pycache__/
 .ipynb_checkpoints/
 .jupyterlite.doit.db
+.lycheecache
 .venv
 .virtual_documents/
 *.egg-info
