@@ -35,6 +35,7 @@ keep-contributing-md = true
 no-binder = true
 
 [tool.compwa.policy.github]
+dependabot-assignees = ["redeboer"]
 no-cd = true
 no-github-actions = true
 
