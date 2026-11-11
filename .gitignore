@@ -9,3 +9,12 @@ __pycache__/
 build/
 dist/
 wheels/
+
+# Agent tooling
+.agents/
+.claude/
+.codex/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
