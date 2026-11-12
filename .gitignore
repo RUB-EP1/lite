@@ -1,6 +1,7 @@
 __pycache__/
 .ipynb_checkpoints/
 .jupyterlite.doit.db
+.lycheecache
 .venv
 .virtual_documents/
 *.egg-info
@@ -8,3 +9,12 @@ __pycache__/
 build/
 dist/
 wheels/
+
+# Agent tooling
+.agents/
+.claude/
+.codex/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
